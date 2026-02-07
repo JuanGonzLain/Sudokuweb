@@ -35,27 +35,8 @@ export default function LoginPage() {
             <input type="password" placeholder="Contraseña" required />
             <i className="fas fa-lock icono"></i>
           </div>
-
-          <div className="opciones">
-            <a href="#">¿Olvidaste tu contraseña?</a>
-            <a href="#">Regístrate</a>
-          </div>
-
           <button type="submit" className="btn">INICIAR SESIÓN</button>
         </form>
-
-        <p className="texto-alt">O continúa con:</p>
-        <div className="login-social">
-          <button className="btn-social" type="button">
-            <i className="fab fa-google"></i>
-          </button>
-          <button className="btn-social" type="button">
-            <i className="fab fa-facebook-f"></i>
-          </button>
-          <button className="btn-social" type="button">
-            <i className="fas fa-envelope"></i>
-          </button>
-        </div>
       </div>
     </div>
   )

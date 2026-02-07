@@ -449,3 +449,505 @@ body.oscuro .menu-page main h1 {
     width: 200px;
   }
 }
+
+/* ===== CONTENEDOR SUDOKU ===== */
+.contenedor-sudoku {
+  padding: 40px 36px;
+  border-radius: 20px;
+  text-align: center;
+  width: 480px;
+  max-width: 95%;
+  z-index: 2;
+  backdrop-filter: blur(12px);
+}
+
+body.oscuro .contenedor-sudoku {
+  background: linear-gradient(145deg, rgba(30, 30, 46, 0.95), rgba(26, 26, 40, 0.98));
+  box-shadow:
+    0 0 0 1px rgba(0, 224, 255, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(0, 224, 255, 0.08);
+}
+
+body.claro .contenedor-sudoku {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 1px rgba(46, 204, 113, 0.12),
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 0 60px rgba(46, 204, 113, 0.06);
+}
+
+.subtitulo {
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ===== TABLERO SUDOKU ===== */
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  margin: 0 auto;
+  width: fit-content;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Borde exterior elegante */
+body.oscuro .sudoku-board {
+  border: 2px solid rgba(0, 224, 255, 0.35);
+  box-shadow:
+    inset 0 0 20px rgba(0, 224, 255, 0.04),
+    0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.claro .sudoku-board {
+  border: 2px solid rgba(46, 204, 113, 0.3);
+  box-shadow:
+    inset 0 0 20px rgba(46, 204, 113, 0.03),
+    0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== CELDA ===== */
+.sudoku-cell {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 42px;
+  outline: none;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Tema oscuro - celdas */
+body.oscuro .sudoku-cell {
+  background-color: rgba(42, 45, 62, 0.6);
+  color: #e0e0e0;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+body.oscuro .sudoku-cell:hover {
+  background-color: rgba(0, 224, 255, 0.08);
+}
+
+/* Tema claro - celdas */
+body.claro .sudoku-cell {
+  background-color: rgba(248, 250, 252, 0.8);
+  color: #2d3748;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+body.claro .sudoku-cell:hover {
+  background-color: rgba(46, 204, 113, 0.06);
+}
+
+/* Celdas pre-rellenadas (readonly / fijas) */
+body.oscuro .sudoku-cell.fija {
+  color: #ffffff;
+  font-weight: 700;
+  background-color: rgba(0, 224, 255, 0.06);
+}
+
+body.claro .sudoku-cell.fija {
+  color: #1a202c;
+  font-weight: 700;
+  background-color: rgba(46, 204, 113, 0.06);
+}
+
+/* Celdas ingresadas por usuario */
+body.oscuro .sudoku-cell.usuario {
+  color: var(--accent-dark);
+}
+
+body.claro .sudoku-cell.usuario {
+  color: var(--accent-light);
+}
+
+/* Celda con error */
+.sudoku-cell.error {
+  color: #ff4757 !important;
+  background-color: rgba(255, 71, 87, 0.08) !important;
+}
+
+/* Focus - efecto glow premium */
+body.oscuro .sudoku-cell:focus {
+  background-color: rgba(0, 224, 255, 0.1);
+  box-shadow:
+    inset 0 0 0 2px rgba(0, 224, 255, 0.5),
+    0 0 12px rgba(0, 224, 255, 0.15);
+  z-index: 2;
+  position: relative;
+}
+
+body.claro .sudoku-cell:focus {
+  background-color: rgba(46, 204, 113, 0.08);
+  box-shadow:
+    inset 0 0 0 2px rgba(46, 204, 113, 0.45),
+    0 0 12px rgba(46, 204, 113, 0.1);
+  z-index: 2;
+  position: relative;
+}
+
+/* ===== LINEAS GRUESAS 3x3 - Separadores profesionales ===== */
+
+/* Bordes derechos de bloques 3x3 (columnas 3 y 6) */
+.sudoku-cell:nth-child(9n + 3),
+.sudoku-cell:nth-child(9n + 6) {
+  border-right: 2px solid transparent;
+}
+
+body.oscuro .sudoku-cell:nth-child(9n + 3),
+body.oscuro .sudoku-cell:nth-child(9n + 6) {
+  border-right-color: rgba(0, 224, 255, 0.25);
+}
+
+body.claro .sudoku-cell:nth-child(9n + 3),
+body.claro .sudoku-cell:nth-child(9n + 6) {
+  border-right-color: rgba(46, 204, 113, 0.25);
+}
+
+/* Bordes inferiores de bloques 3x3 (filas 3 y 6) */
+.sudoku-cell:nth-child(n + 19):nth-child(-n + 27),
+.sudoku-cell:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom: 2px solid transparent;
+}
+
+body.oscuro .sudoku-cell:nth-child(n + 19):nth-child(-n + 27),
+body.oscuro .sudoku-cell:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom-color: rgba(0, 224, 255, 0.25);
+}
+
+body.claro .sudoku-cell:nth-child(n + 19):nth-child(-n + 27),
+body.claro .sudoku-cell:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom-color: rgba(46, 204, 113, 0.25);
+}
+
+/* ===== CELDA SELECCIONADA / RESALTADA ===== */
+body.oscuro .sudoku-cell.resaltada {
+  background-color: rgba(0, 224, 255, 0.06);
+}
+
+body.claro .sudoku-cell.resaltada {
+  background-color: rgba(46, 204, 113, 0.05);
+}
+
+/* ===== NUMERO PAD (selector de numeros) ===== */
+.numero-pad {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.numero-pad button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.oscuro .numero-pad button {
+  background: rgba(42, 45, 62, 0.7);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.oscuro .numero-pad button:hover {
+  background: rgba(0, 224, 255, 0.15);
+  color: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 224, 255, 0.15);
+}
+
+body.claro .numero-pad button {
+  background: rgba(248, 250, 252, 0.9);
+  color: #2d3748;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.claro .numero-pad button:hover {
+  background: rgba(46, 204, 113, 0.1);
+  color: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.1);
+}
+
+/* ===== INFO BAR (errores, tiempo, dificultad) ===== */
+.sudoku-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+body.oscuro .sudoku-info {
+  background: rgba(42, 45, 62, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+body.claro .sudoku-info {
+  background: rgba(248, 250, 252, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.sudoku-info .info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.oscuro .sudoku-info .info-label {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+body.oscuro .sudoku-info .info-value {
+  color: var(--accent-dark);
+}
+
+body.claro .sudoku-info .info-label {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+body.claro .sudoku-info .info-value {
+  color: var(--accent-light);
+}
+
+/* ===== ACCIONES DEL JUEGO ===== */
+.sudoku-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.sudoku-actions button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.oscuro .sudoku-actions button {
+  background: rgba(42, 45, 62, 0.7);
+  color: #c0c0c0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.oscuro .sudoku-actions button:hover {
+  background: rgba(0, 224, 255, 0.12);
+  color: var(--accent-dark);
+  box-shadow: 0 2px 12px rgba(0, 224, 255, 0.1);
+}
+
+body.claro .sudoku-actions button {
+  background: rgba(248, 250, 252, 0.9);
+  color: #64748b;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.claro .sudoku-actions button:hover {
+  background: rgba(46, 204, 113, 0.1);
+  color: var(--accent-light);
+  box-shadow: 0 2px 12px rgba(46, 204, 113, 0.08);
+}
+/* ===== LAYOUT TORNEO ===== */
+.torneo-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* ===== TABLA DE POSICIONES ===== */
+.tabla-posiciones {
+  width: 360px;
+  border-radius: 16px;
+  padding: 24px;
+  z-index: 2;
+}
+
+/* Tema oscuro */
+body.oscuro .tabla-posiciones {
+  background: linear-gradient(
+    145deg,
+    rgba(30, 30, 46, 0.95),
+    rgba(26, 26, 40, 0.98)
+  );
+  box-shadow:
+    0 0 0 1px rgba(0, 224, 255, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Tema claro */
+body.claro .tabla-posiciones {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 1px rgba(46, 204, 113, 0.12),
+    0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== TITULO TABLA ===== */
+.titulo-tabla {
+  font-size: 18px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+body.oscuro .titulo-tabla {
+  color: var(--accent-dark);
+}
+
+body.claro .titulo-tabla {
+  color: var(--accent-light);
+}
+.tabla-posiciones table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.tabla-posiciones th,
+.tabla-posiciones td {
+  padding: 10px 8px;
+  text-align: left;
+}
+
+.tabla-posiciones thead th {
+  opacity: 0.6;
+  font-weight: 600;
+}
+
+.tabla-posiciones tbody tr {
+  transition: background 0.2s ease;
+}
+
+.tabla-posiciones tbody tr:hover {
+  background: rgba(0, 224, 255, 0.06);
+}
+
+body.claro .tabla-posiciones tbody tr:hover {
+  background: rgba(46, 204, 113, 0.06);
+}
+
+/* Posición */
+.posicion-num {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* Top 3 */
+.posicion-num.top-1 {
+  background: gold;
+  color: #000;
+}
+
+.posicion-num.top-2 {
+  background: silver;
+  color: #000;
+}
+
+.posicion-num.top-3 {
+  background: #cd7f32;
+  color: #000;
+}
+
+/* Jugador */
+.nombre-jugador {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar-jugador {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 224, 255, 0.15);
+}
+
+body.claro .avatar-jugador {
+  background: rgba(46, 204, 113, 0.15);
+}
+
+/* Jugador actual */
+.jugador-actual {
+  background: rgba(255, 215, 0, 0.12);
+}
+/* Ocultar jugadores desde la posición 13 en adelante */
+.tabla-posiciones tbody tr:nth-child(n+13) {
+  display: none;
+}
+.tabla-info {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  text-align: center;
+  opacity: 0.6;
+}
+.ganador-box {
+  margin: 20px 0;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+body.oscuro .ganador-box {
+  background: rgba(0, 224, 255, 0.12);
+  color: var(--accent-dark);
+}
+
+body.claro .ganador-box {
+  background: rgba(46, 204, 113, 0.12);
+  color: var(--accent-light);
+}
+
+
+
+
