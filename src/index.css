@@ -1,0 +1,953 @@
+/* ===== VARIABLES DE TEMA ===== */
+:root {
+  /* Modo claro */
+  --bg-light: #E6F2F7;
+  --card-light: #ffffff;
+  --text-light: #333333;
+  --accent-light: #2ECC71;
+  --input-light: #E8F0FE;
+  --social-light: #E5E9F0;
+
+  /* Modo oscuro */
+  --bg-dark: #12141C;
+  --card-dark: #1E1E2E;
+  --text-dark: #EAEAEA;
+  --accent-dark: #00E0FF;
+  --input-dark: #2A2D3E;
+  --social-dark: #2F3542;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.3s ease;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+/* ===== GENERAL ===== */
+body.claro {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.oscuro {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.login-page,
+.menu-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+/* ===== NUMEROS DE FONDO ===== */
+.numeros-fondo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.numeros-fondo span {
+  font-size: 140px;
+  font-weight: bold;
+  opacity: 0.05;
+  animation: flotar 2s infinite alternate;
+}
+
+body.oscuro .numeros-fondo span {
+  color: var(--accent-dark);
+}
+
+body.claro .numeros-fondo span {
+  color: #D50000;
+}
+
+@keyframes flotar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-25px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ===== CONTENEDOR LOGIN ===== */
+.contenedor-login {
+  padding: 35px 30px;
+  border-radius: 15px;
+  text-align: center;
+  /* Haciendo el contenedor más ancho y menos alto */
+  width: 450px;
+  max-width: 90%;
+  transition: 0.3s;
+  position: relative;
+  z-index: 2;
+}
+
+body.oscuro .contenedor-login {
+  background: var(--card-dark);
+  box-shadow: 0 0 25px rgba(0, 224, 255, 0.4);
+}
+
+body.claro .contenedor-login {
+  background: var(--card-light);
+  box-shadow: 0 0 20px rgba(32, 201, 151, 0.4);
+}
+
+/* ===== LOGO ===== */
+.sudoku-logo {
+  margin: 0 auto 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.sudoku-logo img {
+  /* Reduciendo tamaño del logo para menos altura */
+  width: 115px;
+  height: auto;
+  transition: 0.3s;
+}
+
+/* ===== TITULO ===== */
+.titulo {
+  /* Reduciendo tamaño y margen del título */
+  font-size: 26px;
+  margin-bottom: 22px;
+  font-weight: bold;
+}
+
+body.oscuro .titulo {
+  color: var(--accent-dark);
+}
+
+body.claro .titulo {
+  color: var(--accent-light);
+}
+
+/* ===== INPUTS ===== */
+.grupo-input {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.grupo-input input {
+  width: 100%;
+  padding: 12px 45px 12px 15px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+body.oscuro .grupo-input input {
+  background-color: #1f2235;
+  color: #fff;
+}
+
+body.claro .grupo-input input {
+  background-color: #F8FAFC;
+  color: var(--text-light);
+  border: 1px solid #dcdcdc;
+}
+
+.grupo-input .icono {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  pointer-events: none;
+}
+
+body.oscuro .icono {
+  color: var(--accent-dark);
+}
+
+body.claro .icono {
+  color: var(--accent-light);
+}
+
+/* ===== OPCIONES ===== */
+.opciones {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 18px;
+}
+
+.opciones a {
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+body.oscuro .opciones a {
+  color: var(--accent-dark);
+}
+
+body.claro .opciones a {
+  color: var(--accent-light);
+}
+
+.opciones a:hover {
+  text-decoration: underline;
+}
+
+/* ===== BOTON PRINCIPAL ===== */
+.btn {
+  border: none;
+  font-weight: bold;
+  padding: 12px 28px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+body.oscuro .btn {
+  background: var(--accent-dark);
+  color: #000;
+}
+
+body.claro .btn {
+  background: var(--accent-light);
+  color: #fff;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* ===== TEXTO ALTERNATIVO ===== */
+.texto-alt {
+  margin: 18px 0 12px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* ===== BOTONES SOCIALES ===== */
+.login-social {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-social {
+  border: none;
+  font-size: 18px;
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.oscuro .btn-social {
+  background: #222;
+  color: #fff;
+}
+
+body.claro .btn-social {
+  background: #E5E9F0;
+  color: var(--text-light);
+}
+
+.btn-social:hover {
+  background: var(--accent-light);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+body.oscuro .btn-social:hover {
+  background: var(--accent-dark);
+  color: #000;
+}
+
+/* ===== BOTON TOGGLE MODO ===== */
+.btn-toggle {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 100;
+  transition: 0.3s;
+}
+
+body.oscuro .btn-toggle {
+  color: var(--accent-dark);
+}
+
+body.claro .btn-toggle {
+  color: var(--accent-light);
+}
+
+.btn-toggle:hover {
+  transform: scale(1.2);
+}
+
+/* ===== HEADER Y MENU ===== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 15px 25px;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.menu-toggle {
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+body.oscuro .menu-toggle {
+  color: var(--accent-dark);
+}
+
+body.claro .menu-toggle {
+  color: var(--accent-light);
+}
+
+.logo-container {
+  margin-left: 20px;
+}
+
+.logo-container img {
+  height: 60px;
+  transition: 0.3s;
+}
+
+/* ===== SIDEBAR ===== */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -270px;
+  width: 240px;
+  height: 100%;
+  padding-top: 80px;
+  transition: left 0.3s;
+  box-shadow: 5px 0 20px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+body.claro #sidebar {
+  background: var(--accent-light);
+}
+
+body.oscuro #sidebar {
+  background: var(--accent-dark);
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+#sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+#sidebar nav ul li {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+#sidebar nav ul li a:hover {
+  color: #000;
+  font-weight: bold;
+}
+
+/* ===== MAIN (MENU) ===== */
+.menu-page main {
+  text-align: center;
+  padding: 80px 20px;
+  z-index: 2;
+}
+
+.menu-page main h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+body.claro .menu-page main h1 {
+  color: var(--accent-light);
+}
+
+body.oscuro .menu-page main h1 {
+  color: var(--accent-dark);
+}
+
+.menu-page main p {
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .contenedor-login {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .numeros-fondo span {
+    font-size: 80px;
+  }
+
+  .menu-page main h1 {
+    font-size: 2rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 200px;
+  }
+}
+
+/* ===== CONTENEDOR SUDOKU ===== */
+.contenedor-sudoku {
+  padding: 40px 36px;
+  border-radius: 20px;
+  text-align: center;
+  width: 480px;
+  max-width: 95%;
+  z-index: 2;
+  backdrop-filter: blur(12px);
+}
+
+body.oscuro .contenedor-sudoku {
+  background: linear-gradient(145deg, rgba(30, 30, 46, 0.95), rgba(26, 26, 40, 0.98));
+  box-shadow:
+    0 0 0 1px rgba(0, 224, 255, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(0, 224, 255, 0.08);
+}
+
+body.claro .contenedor-sudoku {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 1px rgba(46, 204, 113, 0.12),
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 0 60px rgba(46, 204, 113, 0.06);
+}
+
+.subtitulo {
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ===== TABLERO SUDOKU ===== */
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  margin: 0 auto;
+  width: fit-content;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Borde exterior elegante */
+body.oscuro .sudoku-board {
+  border: 2px solid rgba(0, 224, 255, 0.35);
+  box-shadow:
+    inset 0 0 20px rgba(0, 224, 255, 0.04),
+    0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.claro .sudoku-board {
+  border: 2px solid rgba(46, 204, 113, 0.3);
+  box-shadow:
+    inset 0 0 20px rgba(46, 204, 113, 0.03),
+    0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== CELDA ===== */
+.sudoku-cell {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 42px;
+  outline: none;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Tema oscuro - celdas */
+body.oscuro .sudoku-cell {
+  background-color: rgba(42, 45, 62, 0.6);
+  color: #e0e0e0;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+body.oscuro .sudoku-cell:hover {
+  background-color: rgba(0, 224, 255, 0.08);
+}
+
+/* Tema claro - celdas */
+body.claro .sudoku-cell {
+  background-color: rgba(248, 250, 252, 0.8);
+  color: #2d3748;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+body.claro .sudoku-cell:hover {
+  background-color: rgba(46, 204, 113, 0.06);
+}
+
+/* Celdas pre-rellenadas (readonly / fijas) */
+body.oscuro .sudoku-cell.fija {
+  color: #ffffff;
+  font-weight: 700;
+  background-color: rgba(0, 224, 255, 0.06);
+}
+
+body.claro .sudoku-cell.fija {
+  color: #1a202c;
+  font-weight: 700;
+  background-color: rgba(46, 204, 113, 0.06);
+}
+
+/* Celdas ingresadas por usuario */
+body.oscuro .sudoku-cell.usuario {
+  color: var(--accent-dark);
+}
+
+body.claro .sudoku-cell.usuario {
+  color: var(--accent-light);
+}
+
+/* Celda con error */
+.sudoku-cell.error {
+  color: #ff4757 !important;
+  background-color: rgba(255, 71, 87, 0.08) !important;
+}
+
+/* Focus - efecto glow premium */
+body.oscuro .sudoku-cell:focus {
+  background-color: rgba(0, 224, 255, 0.1);
+  box-shadow:
+    inset 0 0 0 2px rgba(0, 224, 255, 0.5),
+    0 0 12px rgba(0, 224, 255, 0.15);
+  z-index: 2;
+  position: relative;
+}
+
+body.claro .sudoku-cell:focus {
+  background-color: rgba(46, 204, 113, 0.08);
+  box-shadow:
+    inset 0 0 0 2px rgba(46, 204, 113, 0.45),
+    0 0 12px rgba(46, 204, 113, 0.1);
+  z-index: 2;
+  position: relative;
+}
+
+/* ===== LINEAS GRUESAS 3x3 - Separadores profesionales ===== */
+
+/* Bordes derechos de bloques 3x3 (columnas 3 y 6) */
+.sudoku-cell:nth-child(9n + 3),
+.sudoku-cell:nth-child(9n + 6) {
+  border-right: 2px solid transparent;
+}
+
+body.oscuro .sudoku-cell:nth-child(9n + 3),
+body.oscuro .sudoku-cell:nth-child(9n + 6) {
+  border-right-color: rgba(0, 224, 255, 0.25);
+}
+
+body.claro .sudoku-cell:nth-child(9n + 3),
+body.claro .sudoku-cell:nth-child(9n + 6) {
+  border-right-color: rgba(46, 204, 113, 0.25);
+}
+
+/* Bordes inferiores de bloques 3x3 (filas 3 y 6) */
+.sudoku-cell:nth-child(n + 19):nth-child(-n + 27),
+.sudoku-cell:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom: 2px solid transparent;
+}
+
+body.oscuro .sudoku-cell:nth-child(n + 19):nth-child(-n + 27),
+body.oscuro .sudoku-cell:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom-color: rgba(0, 224, 255, 0.25);
+}
+
+body.claro .sudoku-cell:nth-child(n + 19):nth-child(-n + 27),
+body.claro .sudoku-cell:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom-color: rgba(46, 204, 113, 0.25);
+}
+
+/* ===== CELDA SELECCIONADA / RESALTADA ===== */
+body.oscuro .sudoku-cell.resaltada {
+  background-color: rgba(0, 224, 255, 0.06);
+}
+
+body.claro .sudoku-cell.resaltada {
+  background-color: rgba(46, 204, 113, 0.05);
+}
+
+/* ===== NUMERO PAD (selector de numeros) ===== */
+.numero-pad {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.numero-pad button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.oscuro .numero-pad button {
+  background: rgba(42, 45, 62, 0.7);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.oscuro .numero-pad button:hover {
+  background: rgba(0, 224, 255, 0.15);
+  color: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 224, 255, 0.15);
+}
+
+body.claro .numero-pad button {
+  background: rgba(248, 250, 252, 0.9);
+  color: #2d3748;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.claro .numero-pad button:hover {
+  background: rgba(46, 204, 113, 0.1);
+  color: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.1);
+}
+
+/* ===== INFO BAR (errores, tiempo, dificultad) ===== */
+.sudoku-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+body.oscuro .sudoku-info {
+  background: rgba(42, 45, 62, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+body.claro .sudoku-info {
+  background: rgba(248, 250, 252, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.sudoku-info .info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.oscuro .sudoku-info .info-label {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+body.oscuro .sudoku-info .info-value {
+  color: var(--accent-dark);
+}
+
+body.claro .sudoku-info .info-label {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+body.claro .sudoku-info .info-value {
+  color: var(--accent-light);
+}
+
+/* ===== ACCIONES DEL JUEGO ===== */
+.sudoku-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.sudoku-actions button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.oscuro .sudoku-actions button {
+  background: rgba(42, 45, 62, 0.7);
+  color: #c0c0c0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.oscuro .sudoku-actions button:hover {
+  background: rgba(0, 224, 255, 0.12);
+  color: var(--accent-dark);
+  box-shadow: 0 2px 12px rgba(0, 224, 255, 0.1);
+}
+
+body.claro .sudoku-actions button {
+  background: rgba(248, 250, 252, 0.9);
+  color: #64748b;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.claro .sudoku-actions button:hover {
+  background: rgba(46, 204, 113, 0.1);
+  color: var(--accent-light);
+  box-shadow: 0 2px 12px rgba(46, 204, 113, 0.08);
+}
+/* ===== LAYOUT TORNEO ===== */
+.torneo-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* ===== TABLA DE POSICIONES ===== */
+.tabla-posiciones {
+  width: 360px;
+  border-radius: 16px;
+  padding: 24px;
+  z-index: 2;
+}
+
+/* Tema oscuro */
+body.oscuro .tabla-posiciones {
+  background: linear-gradient(
+    145deg,
+    rgba(30, 30, 46, 0.95),
+    rgba(26, 26, 40, 0.98)
+  );
+  box-shadow:
+    0 0 0 1px rgba(0, 224, 255, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Tema claro */
+body.claro .tabla-posiciones {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 1px rgba(46, 204, 113, 0.12),
+    0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== TITULO TABLA ===== */
+.titulo-tabla {
+  font-size: 18px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+body.oscuro .titulo-tabla {
+  color: var(--accent-dark);
+}
+
+body.claro .titulo-tabla {
+  color: var(--accent-light);
+}
+.tabla-posiciones table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.tabla-posiciones th,
+.tabla-posiciones td {
+  padding: 10px 8px;
+  text-align: left;
+}
+
+.tabla-posiciones thead th {
+  opacity: 0.6;
+  font-weight: 600;
+}
+
+.tabla-posiciones tbody tr {
+  transition: background 0.2s ease;
+}
+
+.tabla-posiciones tbody tr:hover {
+  background: rgba(0, 224, 255, 0.06);
+}
+
+body.claro .tabla-posiciones tbody tr:hover {
+  background: rgba(46, 204, 113, 0.06);
+}
+
+/* Posición */
+.posicion-num {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* Top 3 */
+.posicion-num.top-1 {
+  background: gold;
+  color: #000;
+}
+
+.posicion-num.top-2 {
+  background: silver;
+  color: #000;
+}
+
+.posicion-num.top-3 {
+  background: #cd7f32;
+  color: #000;
+}
+
+/* Jugador */
+.nombre-jugador {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar-jugador {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 224, 255, 0.15);
+}
+
+body.claro .avatar-jugador {
+  background: rgba(46, 204, 113, 0.15);
+}
+
+/* Jugador actual */
+.jugador-actual {
+  background: rgba(255, 215, 0, 0.12);
+}
+/* Ocultar jugadores desde la posición 13 en adelante */
+.tabla-posiciones tbody tr:nth-child(n+13) {
+  display: none;
+}
+.tabla-info {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  text-align: center;
+  opacity: 0.6;
+}
+.ganador-box {
+  margin: 20px 0;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+body.oscuro .ganador-box {
+  background: rgba(0, 224, 255, 0.12);
+  color: var(--accent-dark);
+}
+
+body.claro .ganador-box {
+  background: rgba(46, 204, 113, 0.12);
+  color: var(--accent-light);
+}
+
+
+
+
